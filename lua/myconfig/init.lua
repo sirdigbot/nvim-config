@@ -11,5 +11,7 @@ require("myconfig.remap")
 
 require("myconfig.sp_lsp")
 
-require("github-theme").setup()
 
+-- Set up plugins
+require("github-theme").setup()
+require("Comment").setup()

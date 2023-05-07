@@ -40,6 +40,15 @@ return require('packer').startup(function(use)
     }
 
 
+    -- Comment
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+
     -- nvim-neo-tree
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -51,6 +60,14 @@ return require('packer').startup(function(use)
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
             "MunifTanjim/nui.nvim",
         }
+    }
+
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
+        end
     }
 
 

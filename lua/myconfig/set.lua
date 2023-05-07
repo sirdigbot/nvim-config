@@ -13,7 +13,7 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 
 vim.opt.termguicolors = true
-vim.opt.colorcolumn = "80"
+--vim.opt.colorcolumn = "80"
 
 -- Don't keep backups, but store undo tree persistently
 vim.opt.swapfile = false
