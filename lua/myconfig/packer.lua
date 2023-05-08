@@ -4,7 +4,6 @@
 vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
-
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
@@ -70,6 +69,13 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Fidget (LSP loading icon)
+    use {
+        'j-hui/fidget.nvim',
+        config = function()
+            require('fidget').setup()
+        end
+    }
 
     -- LSPZero
     use {
