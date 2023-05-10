@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd.packadd('packer.nvim')
 
@@ -14,17 +12,13 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
-    -- Github Theme
-    use({
-        'projekt0n/github-nvim-theme',
-        tag = 'v0.0.7',
-        -- or                            branch = '0.0.x'
+    -- Theme
+    use {
+        'rebelot/kanagawa.nvim',
         config = function()
-            require('github-theme').setup({
-                theme_style = 'dark_default'
-            })
+            vim.cmd('colorscheme kanagawa')
         end
-    })
+    }
 
     -- Treesitter for proper parsing
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
