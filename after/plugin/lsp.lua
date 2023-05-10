@@ -30,8 +30,8 @@ local on_attach = function(_, bufnr)
 
     -- See `:help K` for why this keymap
     kmap('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
-    kmap('n', '<C-m>', vim.lsp.buf.signature_help, 'Signature Documentation')
-    kmap('i', '<C-m>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    kmap('n', '<C-i>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    kmap('i', '<C-i>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     kmap('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
