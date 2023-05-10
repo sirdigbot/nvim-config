@@ -7,6 +7,7 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    -- Telescope. Should be built in it's so useful.
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         -- or                            , branch = '0.1.x',
@@ -25,21 +26,24 @@ return require('packer').startup(function(use)
         end
     })
 
+    -- Treesitter for proper parsing
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-context')
     use('nvim-treesitter/playground')
 
+    -- For easily reverting changes in a file, even across sessions
     use('mbbill/undotree')
 
+    -- Git integration
     use('tpope/vim-fugitive')
 
+    -- Prettier status line
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-
-    -- Comment
+    -- For quickly commenting/uncommenting blocks of code
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -47,8 +51,7 @@ return require('packer').startup(function(use)
         end
     }
 
-
-    -- nvim-neo-tree
+    -- nvim-neo-tree -- For better manual file exploring
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
     use {
@@ -61,43 +64,52 @@ return require('packer').startup(function(use)
         }
     }
 
-
+    -- NeoVim API helpers for editing config
+    -- Must be setup before lspconfig
     use {
-        'lewis6991/gitsigns.nvim',
+        'folke/neodev.nvim',
         config = function()
-            require('gitsigns').setup()
+            require('neodev').setup()
         end
     }
 
-    -- Fidget (LSP loading icon)
-    use {
-        'j-hui/fidget.nvim',
-        config = function()
-            require('fidget').setup()
-        end
-    }
+    -- Git diff statuses next to line numbers
+    use { 'lewis6991/gitsigns.nvim' }
 
-    -- LSPZero
+    -- LSP Configuration & Plugins
     use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        'neovim/nvim-lspconfig',
         requires = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },             -- Required
-            { 'williamboman/mason.nvim' },           -- Optional
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            -- Automatically install LSPs to stdpath for neovim
+            {
+                'williamboman/mason.nvim',
+                config = function()
+                    require('mason').setup()
+                end
+            },
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },         -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
-            { 'hrsh7th/cmp-buffer' },       -- Optional
-            { 'hrsh7th/cmp-path' },         -- Optional
-            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
-            { 'hrsh7th/cmp-nvim-lua' },     -- Optional
+            -- Set up in after/plugin/lsp.lua
+            'williamboman/mason-lspconfig.nvim',
 
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },             -- Required
-            { 'rafamadriz/friendly-snippets' }, -- Optional
-        }
+            -- Useful status updates for LSP
+            {
+                'j-hui/fidget.nvim',
+                config = function()
+                    require('fidget').setup()
+                end
+            },
+        },
+    }
+
+    -- Autocompletion
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer', -- Optional
+            'hrsh7th/cmp-path',   -- Optional
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+        },
     }
 end)

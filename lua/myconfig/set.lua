@@ -21,11 +21,16 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") or os.getenv("USERPROFILE") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-
 -- Search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- Case-insensitive search unless \C or a capital letter is used
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Better completion
+vim.opt.completeopt = 'menuone,noselect'
 
 -- Keep margin when scrolling
 vim.opt.scrolloff = 8
@@ -37,4 +42,3 @@ vim.opt.mouse = ''
 
 -- ????
 vim.opt.updatetime = 50
-

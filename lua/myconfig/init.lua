@@ -8,6 +8,7 @@
 require("myconfig.packer")
 require("myconfig.set") -- Before remap since it sets <leader>
 require("myconfig.remap")
+require("myconfig.ui")
 
 require("myconfig.sp_lsp")
 
