@@ -68,7 +68,21 @@ return require('packer').startup(function(use)
     }
 
     -- Git diff statuses next to line numbers
-    use { 'lewis6991/gitsigns.nvim' }
+    use('lewis6991/gitsigns.nvim')
+
+    -- Rainbow effect for nested delimeters/brackets/parentheses
+    -- Helps visually identify pairs and looks gay and cool
+    -- NOTE: Setup done in treesitter settings.
+    use('HiPhish/nvim-ts-rainbow2')
+
+    -- Quickly split/join blocks of code like arrays, dictionaries, statements, etc.
+    use({
+        'Wansmer/treesj',
+        requires = { 'nvim-treesitter' },
+    })
+
+    -- Visualise and manipulate marks easier (helpful because accidentally pressing m creates them)
+    use('chentoast/marks.nvim')
 
     -- LSP Configuration & Plugins
     use {

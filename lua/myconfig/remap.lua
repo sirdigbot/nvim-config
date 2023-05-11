@@ -1,10 +1,15 @@
+local xnmap = function(lhs, rhs, desc)
+    vim.keymap.set('n', lhs, rhs, { desc = desc })
+    vim.keymap.set('x', lhs, rhs, { desc = desc })
+end
+
 -- Display project [file] view
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'My Config: Display [P]roject [V]iew (:Ex)' })
 
 
 -- Move highlighted text up and down with J and K
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'My Config: Move highlighted text down' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'My Config: Move highlighted text up' })
+vim.keymap.set('x', 'J', ":m '>+1<CR>gv=gv", { desc = 'My Config: Move highlighted text down' })
+vim.keymap.set('x', 'K', ":m '<-2<CR>gv=gv", { desc = 'My Config: Move highlighted text up' })
 
 
 -- Keep screen centred when using half-page jump (C-d, C-u)
@@ -22,34 +27,43 @@ vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'My Config: [F]orm
 
 
 -- Delete into void register (don't yank)
-vim.keymap.set('n', '<leader>d', [["_d]], { desc = 'My Config: [D]elete into void register' }) -- [[..]] is also a string in lua!
-vim.keymap.set('v', '<leader>d', [["_d]], { desc = 'My Config: [D]elete into void register' })
+xnmap('<leader>d', [["_d]], 'My Config: [D]elete into void register')
+xnmap('<leader>D', [["_D]], 'My Config: [D]elete line into void register')
+xnmap('<leader>x', [["_x]], 'My Config: Delete character under/after cursor into void register')
+xnmap('<leader>X', [["_X]], 'My Config: Delete character before cursor into void register')
+xnmap('<leader>c', [["_c]], 'My Config: [C]ut/change, deleting into void register')
+xnmap('<leader>C', [["_C]], 'My Config: [C]ut/change line, deleting into void register')
+xnmap('<leader>s', [["_s]], 'My Config: Delete into void register and start insert/[s]ubstitute')
+xnmap('<leader>S', [["_S]], 'My Config: Delete line into void register and start insert/[s]ubstitute')
 
 
--- Delete+Paste without copying deleted text (delete to void register)
+-- Delete+Paste over highlighted text without copying deleted text (delete to void register)
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'My Config: Delete and [P]aste (without yanking/copying)' })
 
 
 -- Yank into system clipboard (but not vim)
 vim.keymap.set('n', '<leader>y', [["+y]], { desc = 'My Config: [Y]ank into system clipboard' })
-vim.keymap.set('v', '<leader>y', [["+y]], { desc = 'My Config: [Y]ank into system clipboard' })
+vim.keymap.set('x', '<leader>y', [["+y]], { desc = 'My Config: [Y]ank into system clipboard' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'My Config: [Y]ank lines into system clipboard' })
+vim.keymap.set('x', '<leader>Y', [["+Y]], { desc = 'My Config: [Y]ank lines into system clipboard' })
 
 
 -- Paste from system clipboard (faster alternative to Ctrl+V or Shift+Insert)
 -- Also gives append/prepend capability
-vim.keymap.set('n', '<leader>pp', [["+p]], { desc = 'My Config: [P]aste into system clipboard' })
---vim.keymap.set('v', '<leader>y', [["+y]]) -- Superceded by the Delete+Paste in x-mode
-vim.keymap.set('n', '<leader>PP', [["+P]], { desc = 'My Config: [P]aste into system clipboard' })
+vim.keymap.set('n', '<leader>ps', [["+p]], { desc = 'My Config: [P]aste from system clipboard' })
+vim.keymap.set('n', '<leader>PS', [["+P]], { desc = 'My Config: [P]aste from system clipboard before cursor' })
+-- These conflict with x-mode <leader>p and i cbf fixing it since i never use these anyway
+-- vim.keymap.set('x', '<leader>ps', [["_d"+p]], { desc = 'My Config: Delete and [P]aste from system clipboard (without yanking/copying)' })
+-- vim.keymap.set('x', '<leader>PS', [["_d"+P]], { desc = 'My Config: Delete and [P]aste from system clipboard before cursor (without yanking/copying)' })
 
 
--- Banish the recording macro thing to the shadow realm where it belongs
+-- Banish the repeat-macro thing where to where it can't hurt me
 vim.keymap.set('n', 'Q', '<nop>', { desc = 'My Config: Remap to disable Q' })
 
 
 -- Shortcut for global substitute on the currently selected word
 -- I'm gonna be honest, I don't understand this at all. But it's neat!
-vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'My Config: Global Substitute (:%s) the current word' })
+vim.keymap.set('n', '<leader>gsw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'My Config: Global Substitute (:%s) the current word' })
 
 
 -- Faster split-view switching

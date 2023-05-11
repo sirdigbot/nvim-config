@@ -30,8 +30,9 @@ local on_attach = function(_, bufnr)
 
     -- See `:help K` for why this keymap
     kmap('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
-    kmap('n', '<C-i>', vim.lsp.buf.signature_help, 'Signature Documentation')
-    kmap('i', '<C-i>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- <C-k> is used in remap.lua, whereas <C-n> is an alternate form of j
+    kmap('n', '<C-n>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    kmap('i', '<C-n>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     kmap('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -107,9 +108,10 @@ cmp.setup({
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete {},
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = false, -- Manual selection only
         },
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
