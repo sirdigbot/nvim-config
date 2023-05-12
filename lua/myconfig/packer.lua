@@ -28,6 +28,9 @@ return require('packer').startup(function(use)
     -- For easily reverting changes in a file, even across sessions
     use('mbbill/undotree')
 
+    -- Auto-detect shiftwidth and expandtab based on current file
+    use('tpope/vim-sleuth')
+
     -- Git integration
     use('tpope/vim-fugitive')
 

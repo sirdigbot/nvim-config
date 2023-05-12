@@ -63,7 +63,7 @@ vim.keymap.set('n', 'Q', '<nop>', { desc = 'My Config: Remap to disable Q' })
 
 -- Shortcut for global substitute on the currently selected word
 -- I'm gonna be honest, I don't understand this at all. But it's neat!
-vim.keymap.set('n', '<leader>gsw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'My Config: Global Substitute (:%s) the current word' })
+vim.keymap.set('n', '<leader>suw', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'My Config: Global Substitute (:%s) the current word' })
 
 
 -- Faster split-view switching
