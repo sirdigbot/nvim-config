@@ -51,7 +51,7 @@ vim.keymap.set('x', '<leader>Y', [["+Y]], { desc = 'My Config: [Y]ank lines into
 -- Paste from system clipboard (faster alternative to Ctrl+V or Shift+Insert)
 -- Also gives append/prepend capability
 vim.keymap.set('n', '<leader>ps', [["+p]], { desc = 'My Config: [P]aste from system clipboard' })
-vim.keymap.set('n', '<leader>PS', [["+P]], { desc = 'My Config: [P]aste from system clipboard before cursor' })
+vim.keymap.set('n', '<leader>Ps', [["+P]], { desc = 'My Config: [P]aste from system clipboard before cursor' })
 -- These conflict with x-mode <leader>p and i cbf fixing it since i never use these anyway
 -- vim.keymap.set('x', '<leader>ps', [["_d"+p]], { desc = 'My Config: Delete and [P]aste from system clipboard (without yanking/copying)' })
 -- vim.keymap.set('x', '<leader>PS', [["_d"+P]], { desc = 'My Config: Delete and [P]aste from system clipboard before cursor (without yanking/copying)' })
