@@ -36,6 +36,8 @@ lspconfig.sp_lsp.setup{
     },
 }
 
+-- NOTE: Be sure to run :TSInstall sourcepawn to update the parser!
+-- Windows: In Admin Developer Command Prompt
 local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
 parser_config.sourcepawn = {
     install_info = {
