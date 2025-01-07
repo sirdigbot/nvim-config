@@ -5,10 +5,13 @@
 -- Both will *run* in regular command prompt fine, though.
 -- Just switch when you need to do :PackerSync or install an LSP for a lang.
 
-require("myconfig.packer")
-require("myconfig.set") -- Before remap since it sets <leader>
+
+require("myconfig.options") -- Before remap since it sets <leader>.
+                            -- Before lazy because lazy said to set <leader> first.
+require("myconfig.lazy")    -- Before remap so we can remap plugins
 require("myconfig.remap")
+
+
 require("myconfig.ui")
 
-require("myconfig.sp_lsp")
 

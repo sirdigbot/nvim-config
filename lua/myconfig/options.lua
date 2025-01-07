@@ -1,4 +1,6 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 
 -- Line numbers
 vim.opt.nu = true
